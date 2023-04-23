@@ -1,14 +1,19 @@
 <template>
   <div class="AllCard">
-      <ion-card button routerLink="`/ligues/${id}`">
+      <ion-card button routerLink="`/ligues/4334`" class="Ligue1">
         <ion-card-header>
-            <ion-card-title>French Ligue 1</ion-card-title>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            <ion-card-title>Ligue 1</ion-card-title>
         </ion-card-header>
-        <ion-card-content>
-            <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-            ABCDEFGHIJKLMNOPQRSTUVWXYZ
-        </ion-card-content>
+      </ion-card>
+      <ion-card button routerLink="`/ligues/4334`" class="Ligue2">
+        <ion-card-header>
+            <ion-card-title>Ligue 2</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+      <ion-card button routerLink="`/ligues/4334`" class="National">
+        <ion-card-header>
+            <ion-card-title>National</ion-card-title>
+        </ion-card-header>
       </ion-card>
   </div>
 </template>
@@ -19,9 +24,9 @@ import { IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent } fro
 
 <script lang="ts">
 export default {
-    Methods: {
-        AllLigue() {
-            fetch(`https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l={id}&s=2022-2023`)
+    methods: {
+        AllLigue($id) {
+            fetch(`https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=4334&s=2022-2023`)
             .then(response => response.json())
             .then(json => {
             console.log(json);
@@ -49,4 +54,23 @@ export default {
 ion-card{
     width: 70%;
 }
+ion-card-title{
+    text-align: center;
+}
+
+/* .Ligue1{
+    background: url("Ligue1.png");
+    background-position: center;
+    background-size: cover;
+}
+.Ligue2{
+    background: url("Ligue2.png");
+    background-position: center;
+    background-size: cover;
+}
+.National{
+    background: url("National.png");
+    background-position: center;
+    background-size: cover;
+} */
 </style>
