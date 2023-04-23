@@ -10,50 +10,31 @@
             ABCDEFGHIJKLMNOPQRSTUVWXYZ
         </ion-card-content>
       </ion-card>
-      <ion-card button routerLink="`/ligues/${id}`">
-        <ion-card-header>
-            <ion-card-title>French Ligue 1</ion-card-title>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-            <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-            ABCDEFGHIJKLMNOPQRSTUVWXYZ
-        </ion-card-content>
-      </ion-card>
-      <ion-card button routerLink="`/ligues/${id}`">
-        <ion-card-header>
-            <ion-card-title>French Ligue 1</ion-card-title>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-            <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-            ABCDEFGHIJKLMNOPQRSTUVWXYZ
-        </ion-card-content>
-      </ion-card>
   </div>
 </template>
 
 <script setup lang="ts">
 import { IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent } from '@ionic/vue';
+</script>
 
+<script lang="ts">
 export default {
-    name: 'HomePage',
-    methods: {
-        fetch(`https://www.thesportsdb.com/api/v1/json/3/lookup_all_teams.php?l=4334`)
+    Methods: {
+        AllLigue() {
+            fetch(`https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l={id}&s=2022-2023`)
             .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                $ligue = data;
-            })
-            .catch(error => {
-                console.error(error);
+            .then(json => {
+            console.log(json);
+            this.ligue = json;
             });
+        }
     },
     data() {
-      return {
-        $ligue: []
-      }
-    }
+        return {
+            ligue: [],
+            SpecifiqueLigue: [4334,4401,4637],
+        };
+    },
 }
 </script>
 
