@@ -1,42 +1,42 @@
 <template>
     <div class="AllCard">
-        <ion-card button routerLink="/chemin-de-la-page">
-          <ion-card-header>
-              <ion-card-title>qzddqzdq</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-              <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-              ABCDEFGHIJKLMNOPQRSTUVWXYZ
-          </ion-card-content>
-        </ion-card>
-        <ion-card button routerLink="/chemin-de-la-page">
-          <ion-card-header>
-              <ion-card-title>zdqdzqdzqd</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-              <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-              ABCDEFGHIJKLMNOPQRSTUVWXYZ
-          </ion-card-content>
-        </ion-card>
-        <ion-card button routerLink="/chemin-de-la-page">
-          <ion-card-header>
-              <ion-card-title>8465123</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-              <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-              ABCDEFGHIJKLMNOPQRSTUVWXYZ
-          </ion-card-content>
-        </ion-card>
+        <div v-for="item in Classement" class="card_class">
+            <ion-card button routerLink="/Ligue">
+                <ion-card-header>
+                    <ion-card-title>1.</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <div class="card_classCont">
+                        <img :src="item.strTeamBadge" alt="Team Logo"/>
+                        {{ item.strTeam }}
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </div>
     </div>
   </template>
   
   <script setup lang="ts">
   import { IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent } from '@ionic/vue';
-  
   </script>
+
+<script lang="ts">
+export default {
+    mounted() {
+        fetch(`https://www.thesportsdb.com/api/v1/json/3/lookuptable.php?l=${this.$route.params.id}&s=2022-2023`)
+        .then(response => response.json())
+        .then(json => {
+        console.log(json.table);
+        this.Classement = json.table;
+        });
+    },
+    data() {
+        return {
+            Classement: [],
+        };
+    }
+}
+</script>
   
   <style scoped>
   .AllCard{
@@ -46,8 +46,20 @@
       align-items: center;
       height: 100%;
   }
-  ion-card{
-      width: 70%;
+  .card_class{
+      width: 85%;
+  }
+  .card_classCont{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 60%;
+      font-weight: bold;
+  }
+  ion-card-content{
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
   </style>
   
