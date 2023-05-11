@@ -1,20 +1,15 @@
 <template>
-    <div class="AllCard">
-        <div v-for="item in Classement" class="card_class">
-            <ion-card button routerLink="/Ligue">
-                <ion-card-header>
-                    <ion-card-title>1.</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    <div class="card_classCont">
-                        <img :src="item.strTeamBadge" alt="Team Logo"/>
-                        {{ item.strTeam }}
-                    </div>
-                </ion-card-content>
-            </ion-card>
-        </div>
-    </div>
-  </template>
+    <ion-content>
+      <ion-list>
+        <h1 class="titleLigue">Top Ligue</h1>
+        <ion-item button routerLink="/Ligue" v-for="item in Classement">
+            <img :src="item.strTeamBadge" alt="Team Logo"/>
+                {{ item.strTeam }}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+</template>
+
   
   <script setup lang="ts">
   import { IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent } from '@ionic/vue';
@@ -60,6 +55,11 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+  }
+  .titleLigue{
+      text-align: center;
+      font-weight: bold;
+      font-size: 2rem;
   }
   </style>
   
