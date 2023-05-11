@@ -15,7 +15,7 @@ const routes = [
     component: LiguesPage
   },
   {
-    path: '/clubs/:id',
+    path: '/clubs/:id(\\d+)',
     name: 'Clubs',
     component: ClubsPage
   }

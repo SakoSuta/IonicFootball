@@ -1,43 +1,36 @@
 <template>
     <div class="AllCard">
-        <ion-card button routerLink="/chemin-de-la-page">
+        <ion-card button routerLink="/chemin-de-la-page" v-for="item in Events" :style="{ backgroundImage: `url(${item.strThumb})`, backgroundPosition: 'center', width: '70%' }">
           <ion-card-header>
-              <ion-card-title>qzddqzdq</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+              <ion-card-title>{{ item.strEvent }}</ion-card-title>
+              <ion-card-subtitle>{{ item.strVenue }}</ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content>
-              <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-              ABCDEFGHIJKLMNOPQRSTUVWXYZ
-          </ion-card-content>
-        </ion-card>
-        <ion-card button routerLink="/chemin-de-la-page">
-          <ion-card-header>
-              <ion-card-title>zdqdzqdzqd</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-              <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-              ABCDEFGHIJKLMNOPQRSTUVWXYZ
-          </ion-card-content>
-        </ion-card>
-        <ion-card button routerLink="/chemin-de-la-page">
-          <ion-card-header>
-              <ion-card-title>8465123</ion-card-title>
-              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-              <!-- {{ content.substring(0, 50) }}{{ content.length > 50 ? '...' : '' }} -->
-              ABCDEFGHIJKLMNOPQRSTUVWXYZ
-          </ion-card-content>
         </ion-card>
     </div>
   </template>
   
   <script setup lang="ts">
   import { IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent } from '@ionic/vue';
-  
   </script>
   
+  <script lang="ts">
+export default {
+    mounted() {
+        fetch(`https://www.thesportsdb.com/api/v1/json/3/eventslast.php?id=${this.$route.params.id}`)
+        .then(response => response.json())
+        .then(json => {
+        console.log(json.results);
+        this.Events = json.results;
+        });
+    },
+    data() {
+        return {
+            Events: [],
+        };
+    }
+}
+</script>
+
   <style scoped>
   .AllCard{
       display: flex;
@@ -48,6 +41,7 @@
   }
   ion-card{
       width: 70%;
+      text-align: center;
   }
   </style>
   

@@ -2,7 +2,7 @@
     <ion-content>
       <ion-list>
         <h1 class="titleLigue">Top Ligue</h1>
-        <ion-item button routerLink="/Ligue" v-for="item in Classement">
+        <ion-item button routerLink="/clubs/{{item.idTeam}}" v-for="item in Classement">
             <img :src="item.strTeamBadge" alt="Team Logo"/>
                 {{ item.strTeam }}
         </ion-item>
