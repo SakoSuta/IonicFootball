@@ -9,10 +9,9 @@
       </ion-list>
     </ion-content>
 </template>
-
   
   <script setup lang="ts">
-  import { IonCard,IonCardHeader,IonCardTitle,IonCardSubtitle,IonCardContent } from '@ionic/vue';
+  import { IonContent,IonList,IonItem } from '@ionic/vue';
   </script>
 
 <script lang="ts">
@@ -34,32 +33,9 @@ export default {
 </script>
   
   <style scoped>
-  .AllCard{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-  }
-  .card_class{
-      width: 85%;
-  }
-  .card_classCont{
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      width: 60%;
-      font-weight: bold;
-  }
-  ion-card-content{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
   .titleLigue{
       text-align: center;
       font-weight: bold;
       font-size: 2rem;
   }
   </style>
-  
